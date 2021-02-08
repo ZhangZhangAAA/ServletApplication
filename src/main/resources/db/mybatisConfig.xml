@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <properties resource="db/jdbc.properties"/>
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+    <typeAliases>
+        <typeAlias alias="druidDataSourceFactory" type="com.zc.db.DruidDataSourceFactory"/>
+    </typeAliases>
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            <property name="helperDialect" value="${jdbc.dbtype}"/>
+            <property name="reasonable" value="true"/>
+        </plugin>
+    </plugins>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <dataSource type="druidDataSourceFactory">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+                <property name="initialSize" value="${pool.initialSize}"/>
+                <property name="maxActive" value="${pool.maxActive}"/>
+                <property name="maxWait" value="${pool.maxWait}"/>
+                <property name="keepAlive" value="${pool.keepAlive}"/>
+            </dataSource>
+        </environment>
+    </environments>
+</configuration>
