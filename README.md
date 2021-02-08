@@ -1,2 +1,3 @@
 # ServletApplication
 Servlet代码
+整合了mybatis开发了ant风格的mapper文件扫描器，通过简单配置即可
